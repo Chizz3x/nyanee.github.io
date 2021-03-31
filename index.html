@@ -46,13 +46,11 @@
       $('#text').delay(2000).fadeOut('medium');
       $('#overlay').delay(2500).fadeOut('fast').queue(function() {
         function  playVideo() {
-          document.getElementById("vid").play();
+          document.getElementById("vid").play().catch(function(error) {
+            console.log(error);
+            if(error) setTimeout(playVideo, 500)
+          })
         }
-        
-        document.getElementById('vid')
-          .addEventListener('error', function(e) {
-            playVideo();
-          }, true);
         
         playVideo();
         
