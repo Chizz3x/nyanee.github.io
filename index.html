@@ -47,7 +47,8 @@
       $('#overlay').delay(2500).fadeOut('fast').queue(function() {
         function  playVideo() {
           try {
-            document.getElementById("vid").play()
+            document.getElementById("vid").play();
+            $(this).dequeue();
           } catch() {
             playVideo()
           }
