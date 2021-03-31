@@ -50,10 +50,14 @@
             document.getElementById("vid").play();
             $(this).dequeue();
           } catch (err) {
-            if(err)
-              playVideo()
+            if(err) {
+              console.log(err);
+              playVideo();
+            }
           }
         }
+        
+        playVideo();
       });
     </script>
   </body>
