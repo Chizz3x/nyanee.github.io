@@ -45,7 +45,13 @@
       $('#text').delay(500).fadeIn('medium');
       $('#text').delay(2000).fadeOut('medium');
       $('#overlay').delay(2500).fadeOut('fast').queue(function() {
-        document.getElementById("vid").play()
+        function  playVideo() {
+          try {
+            document.getElementById("vid").play()
+          } catch() {
+            playVideo()
+          }
+        }
       });
     </script>
   </body>
