@@ -46,18 +46,17 @@
       $('#text').delay(2000).fadeOut('medium');
       $('#overlay').delay(2500).fadeOut('fast').queue(function() {
         function  playVideo() {
-          try {
-            document.getElementById("vid").play();
-            $(this).dequeue();
-          } catch (err) {
-            if(err) {
-              console.log(err);
-              playVideo();
-            }
-          }
+          document.getElementById("vid").play();
         }
         
+        document.getElementById('vid')
+          .addEventListener('error', function(e) {
+            playVideo();
+          }, true);
+        
         playVideo();
+        
+        $(this).dequeue();
       });
     </script>
   </body>
