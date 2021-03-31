@@ -10,10 +10,16 @@
     <meta property="og:description" content="Totally not an anime streaming site and totally not private.">
     <meta property="og:image" content="img/gradient.png">
     <meta property="og:site_name" content="nyanee.vip">
+		
+		<link rel="stylesheet" href="css/loadingAnimation.css" type="text/css">
 
     <link rel="icon" href="./img/solid.ico">
     
     <style>
+			:root {
+				--brand: #5E8AD0;
+			}
+		
       #overlay {
         display: flex;
         justify-content: center;
@@ -28,9 +34,17 @@
         font-family: sans-serif;
         display: none;
       }
+			.icon {
+				position: absolute;
+				top: 0;
+				width: 100px;
+				height: 100px;
+				transition: 30s linear;
+				transform: translateY(-100px);
+			}
     </style>
   </head>
-  <body style="background-color:rgb(10,10,10)">
+  <body style="background-color:rgb(10,10,10);overflow:hidden">
     <div id="overlay">
       <span id='text'>nyanee team presents...</span>
     </div>
@@ -40,6 +54,7 @@
     </video>
     
     <script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/loadingAnimation.js"></script>
     <script>
       let $ = jQuery;
       $('#text').delay(500).fadeIn('medium');
@@ -57,12 +72,27 @@
         };
         document.getElementById("vid").play().then(function() {
           $('#overlay').fadeOut('fast');
+					setInterval(spawnIcon, 2000);
         }).catch(function(error) {
           console.log(error);
           if(error)
             setTimeout(playVideo, 500);
         })
       }
+			
+			function spawnIcon() {
+				let el = document.createElement('div');
+				el.classList.add('icon');
+				el.style.left = `${Math.random() * (window.innerWidth - 100)}px`;
+				document.body.appendChild(el);
+				setTimeout(function() {
+					loadingAnimation(el);
+					el.style.transform = `translateY(${window.innerHeight}px) rotate(2000deg)`;
+					setTimeout(function() {
+						document.body.removeChild(el);
+					}, 30000)
+				}, 500)
+			}
 
       playVideo();
     </script>
