@@ -1,10 +1,50 @@
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="not anime, not streaming, not private">
+
+    <meta property="theme-color" content="#5E8AD0">
+    <meta property="og:title" content="nyanee">
+    <meta property="og:description" content="Totally not an anime streaming site and totally not private.">
+    <meta property="og:image" content="./img/gradient.png">
+    <meta property="og:site_name" content="nyanee.vip">
+
+    <link rel="icon" href="./img/solid.ico">
     
+    <style>
+      #overlay {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position:absolute;
+        width:100%;
+        height:100%;
+        background:rgb(10,10,10);
+      }
+      #text {
+        color: white;
+        font-family: sans-serif;
+        display: none;
+      }
+    </style>
   </head>
-  <body>
+  <body style="background-color:rgb(10,10,10)">
+    <div id="overlay">
+      <span id='text'>nyanee</span>
+    </div>
+    
     <iframe width="100%" height="100%"
       src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" allow="autoplay">
     </iframe>
+    
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+      let $ = jQuery;
+      $('#text').delay(500).fadeIn('medium');
+      $('#text').delay(2000).fadeOut('medium');
+      $('#overlay').delay(2500).fadeOut('fast');      
+    </script>
   </body>
 </html>
