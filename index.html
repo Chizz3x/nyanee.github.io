@@ -49,8 +49,9 @@
           try {
             document.getElementById("vid").play();
             $(this).dequeue();
-          } catch() {
-            playVideo()
+          } catch (err) {
+            if(err)
+              playVideo()
           }
         }
       });
