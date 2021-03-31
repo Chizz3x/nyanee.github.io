@@ -45,7 +45,16 @@
       $('#text').delay(500).fadeIn('medium');
       $('#text').delay(2000).fadeOut('medium');
       $('#overlay').delay(2500).fadeOut('fast').queue(function() {
+        let fails = -1;
+        let notified = false;
+        
         function  playVideo() {
+          fails++;
+          if(fails >= 5 && !notified) {
+            notified = true;
+            $('#text').html('Press anywhere on the browser to start.');
+            $('#text').fadeIn('medium');
+          };
           document.getElementById("vid").play().catch(function(error) {
             console.log(error);
             if(error) setTimeout(playVideo, 500)
